@@ -1,0 +1,111 @@
+{
+	"comments": {
+		"blockComment": [
+			"###",
+			"###"
+		],
+		"lineComment": "#"
+	},
+	"brackets": [
+		[
+			"(",
+			")"
+		],
+		[
+			"[",
+			"]"
+		],
+		[
+			"{",
+			"}"
+		]
+	],
+	"autoClosingPairs": [
+		{
+			"open": "###",
+			"close": "###",
+			"notIn": [
+				"string",
+				"comment"
+			]
+		},
+		{
+			"open": "?",
+			"close": "!",
+			"notIn": [
+				"string",
+				"comment"
+			]
+		},
+		{
+			"open": "'",
+			"close": "'",
+			"notIn": [
+				"string",
+				"comment"
+			]
+		},
+		{
+			"open": "\"",
+			"close": "\"",
+			"notIn": [
+				"string"
+			]
+		},
+		[
+			"(",
+			")"
+		],
+		[
+			"[",
+			"]"
+		],
+		[
+			"{",
+			"}"
+		]
+	],
+	"surroundingPairs": [
+		[
+			"#",
+			"#"
+		],
+		[
+			"?",
+			"!"
+		],
+		[
+			"'",
+			"'"
+		],
+		[
+			"\"",
+			"\""
+		],
+		[
+			"(",
+			")"
+		],
+		[
+			"[",
+			"]"
+		],
+		[
+			"{",
+			"}"
+		]
+	],
+	"autoCloseBefore": "#&|^<>+-*/%=?.:,; \t\n",
+	"folding": {
+		"offSide": true,
+		"markers": {
+			"start": "(\\(|\\[|\\{)",
+			"end": "(\\)|\\]|\\})"
+		}
+	},
+	"wordPattern": "\\b[a-zA-Z0-9_]+\\b",
+	"indentationRules": {
+		"increaseIndentPattern": "(?=[\\(\\[\\{]).\\s*$",
+		"decreaseIndentPattern": "(?<![\\(\\[\\{].*)(?=[\\)\\]\\}]).\\s*$"
+	}
+}

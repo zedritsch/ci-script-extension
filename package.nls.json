@@ -1,0 +1,5 @@
+{
+	"configuration.lsp.enable.description": "Enable/Disable the language server.",
+	"configuration.lsp.installLocation.description": "Add the path of your CI-Script installation.",
+	"configuration.lsp.maxNumberOfProblems.description": "Set the maximum number of problems produced by the server."
+}

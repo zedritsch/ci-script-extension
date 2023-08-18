@@ -1,0 +1,5 @@
+{
+	"configuration.lsp.enable.description": "Aktivieren/Deaktivieren Sie den Sprachserver.",
+	"configuration.lsp.installLocation.description": "Fügen Sie den Pfad Ihrer CI-Script-Installation hinzu.",
+	"configuration.lsp.maxNumberOfProblems.description": "Legen Sie die maximale Anzahl der vom Server erzeugten Probleme fest."
+}

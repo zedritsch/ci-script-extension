@@ -1,0 +1,86 @@
+{
+	"name": "ci-script-for-vs-code",
+	"displayName": "CI-Script for VS-Code",
+	"description": "CI-Script support for Visual Studio Code",
+	"publisher": "Zedritsch",
+	"license": "MIT",
+	"version": "1.0.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/CI-Script/CI-Script-for-VS-Code"
+	},
+	"engines": {
+		"vscode": "^1.75.0"
+	},
+	"categories": [
+		"Programming Languages",
+		"Debuggers",
+		"Formatters",
+		"Linters",
+		"Other"
+	],
+	"keywords": [
+		"CI-Script",
+		"ci-script",
+		"cis"
+	],
+	"icon": "res/img/icon.png",
+	"main": "src/extension",
+	"l10n": "res/l10n",
+	"contributes": {
+		"languages": [
+			{
+				"id": "ci-script",
+				"icon": {
+					"dark": "res/img/dark.png",
+					"light": "res/img/light.png"
+				},
+				"aliases": [
+					"CI-Script",
+					"ci-script",
+					"cis"
+				],
+				"extensions": [
+					".cis"
+				],
+				"configuration": "res/language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "ci-script",
+				"scopeName": "source.cis",
+				"path": "res/ci-script.tmLanguage.json"
+			}
+		],
+		"configuration": {
+			"title": "CI-Script",
+			"properties": {
+				"CIS.lsp.enable": {
+					"description": "%configuration.lsp.enable.description%",
+					"type": "boolean",
+					"default": true,
+					"order": 0,
+					"scope": "resource"
+				},
+				"CIS.lsp.installLocation": {
+					"description": "%configuration.lsp.installLocation.description%",
+					"type": "string",
+					"default": "",
+					"order": 1,
+					"scope": "resource"
+				},
+				"CIS.lsp.maxNumberOfProblems": {
+					"description": "%configuration.lsp.maxNumberOfProblems.description%",
+					"type": "number",
+					"default": 100,
+					"order": 2,
+					"scope": "resource"
+				}
+			}
+		}
+	},
+	"dependencies": {
+		"vscode-languageclient": "^8.1.0"
+	}
+}
