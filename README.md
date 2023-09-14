@@ -1,16 +1,5 @@
 # ci-script-for-vs-code README
 
-# TODO
-
-- Doc-Comments
-
-```cis
-var lol;
-```
-```ci-script
-var lol;
-```
-
 This is the README for your extension "ci-script-for-vs-code". After writing up a brief description, we recommend including the following sections.
 
 ## Features
