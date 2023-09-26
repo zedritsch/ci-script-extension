@@ -24,16 +24,15 @@
 		"ci-script",
 		"cis"
 	],
-	"icon": "res/img/icon.png",
-	"main": "src/extension",
-	"l10n": "res/l10n",
+	"icon": "img/icon.png",
+	"l10n": "l10n",
 	"contributes": {
 		"languages": [
 			{
 				"id": "ci-script",
 				"icon": {
-					"dark": "res/img/dark.png",
-					"light": "res/img/light.png"
+					"dark": "img/dark.png",
+					"light": "img/light.png"
 				},
 				"aliases": [
 					"CI-Script",
@@ -43,14 +42,14 @@
 				"extensions": [
 					".cis"
 				],
-				"configuration": "res/language-configuration.json"
+				"configuration": "language-configuration.json"
 			}
 		],
 		"grammars": [
 			{
 				"language": "ci-script",
 				"scopeName": "source.cis",
-				"path": "res/ci-script.tmLanguage.json"
+				"path": "syntax/ci-script.tmLanguage.json"
 			}
 		],
 		"configuration": {
@@ -79,8 +78,5 @@
 				}
 			}
 		}
-	},
-	"dependencies": {
-		"vscode-languageclient": "^8.1.0"
 	}
 }
