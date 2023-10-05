@@ -44,6 +44,7 @@
 		[ "#", "#" ],
 		[ " ", " " ],
 		[ "?", "!" ],
+		[ "\\", "\\" ],
 		[ "'", "'" ],
 		[ "\"", "\"" ],
 		[ "`", "`" ],
@@ -51,7 +52,7 @@
 		[ "[", "]" ],
 		[ "{", "}" ]
 	],
-	"autoCloseBefore": "#&|^<>+-*/%=?.:,; \t\n",
+	"autoCloseBefore": "\t\n !#$%&*+,-./:;<=>?@^|~",
 	"folding": {
 		"offSide": true,
 		"markers": {
@@ -59,9 +60,9 @@
 			"end": "[)\\]}]"
 		}
 	},
-	"wordPattern": "\\b[a-zA-Z0-9_]+\\b",
+	"wordPattern": "\\b[0-9A-Z_a-z]+\\b",
 	"indentationRules": {
-		"increaseIndentPattern": "(?=[\\(\\[\\{]).\\s*$",
-		"decreaseIndentPattern": "(?<![\\(\\[\\{].*)(?=[\\)\\]\\}]).\\s*$"
+		"increaseIndentPattern": "[([{]\\s*$",
+		"decreaseIndentPattern": "(?<![([{].*)[)\\]}]\\s*$"
 	}
 }
