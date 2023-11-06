@@ -1,5 +1,4 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "CI-Script",
 	"patterns": [
 		{
@@ -7,11 +6,7 @@
 			"begin": "/\\*",
 			"end": "\\*/",
 			"patterns": [
-				{
-					"name": "comment.block.cis",
-					"begin": "/\\*",
-					"end": "\\*/"
-				},
+				{ "include": "#comment.block" },
 				{
 					"name": "comment.block.cis",
 					"match": "\\\\`"
@@ -19,17 +14,43 @@
 				{ "include": "#comment.code" },
 				{ "include": "#comment.tag" },
 				{ "include": "#comment.author" },
-				{ "include": "#comment.see" },
-				{ "include": "#comment.param.variable" },
-				{ "include": "#comment.param.separator" },
-				{ "include": "#comment.param.type" },
-				{ "include": "#comment.param.definition" },
-				{ "include": "#comment.return" },
-				{ "include": "#comment.since" },
-				{ "include": "#comment.deprecated" }
+				{ "include": "#comment.param" },
+				{ "include": "#comment.since" }
 			]
 		},
-		{
+		{ "include": "#comment.line.number-sign" },
+		{ "include": "#storage.modifier" },
+		{ "include": "#storage.type" },
+		{ "include": "#keyword.control.conditional" },
+		{ "include": "#keyword.control.loop" },
+		{ "include": "#keyword.control.flow" },
+		{ "include": "#keyword.operator.relational" },
+		{ "include": "#keyword.operator.logical" },
+		{ "include": "#keyword.operator.arithmetic" },
+		{ "include": "#keyword.operator" },
+		{ "include": "#support.type.primitive" },
+		{ "include": "#support.function" },
+		{ "include": "#constant.language.boolean" },
+		{ "include": "#constant.language" },
+		{ "include": "#constant.numeric" },
+		{ "include": "#string.quoted.single" },
+		{ "include": "#string.quoted.double" },
+		{ "include": "#punctuation.definition" },
+		{ "include": "#punctuation.separator" },
+		{ "include": "#entity.name.namespace" },
+		{ "include": "#entity.name.type" },
+		{ "include": "#entity.name.function" },
+		{ "include": "#variable.parameter" },
+		{ "include": "#variable.other.constant" },
+		{ "include": "#variable" }
+	],
+	"repository": {
+		"comment.block": {
+			"name": "comment.block.cis",
+			"begin": "/\\*",
+			"end": "\\*/"
+		},
+		"comment.line.number-sign": {
 			"name": "comment.line.number-sign.cis",
 			"begin": "#",
 			"end": "\\n",
@@ -41,55 +62,16 @@
 				{ "include": "#comment.code" },
 				{ "include": "#comment.tag" },
 				{ "include": "#comment.author" },
-				{ "include": "#comment.see" },
-				{ "include": "#comment.param.variable" },
-				{ "include": "#comment.param.separator" },
-				{ "include": "#comment.param.type" },
-				{ "include": "#comment.param.definition" },
-				{ "include": "#comment.return" },
-				{ "include": "#comment.since" },
-				{ "include": "#comment.deprecated" }
+				{ "include": "#comment.param" },
+				{ "include": "#comment.since" }
 			]
 		},
-		{
-			"name": "invalid.cis",
-			"match": "\\*/"
-		},
-		{ "include": "#storage.modifier" },
-		{ "include": "#storage.type" },
-		{ "include": "#keyword.control.conditional" },
-		{ "include": "#keyword.control.flow" },
-		{ "include": "#keyword.operator.relational" },
-		{ "include": "#keyword.operator.logical" },
-		{ "include": "#keyword.operator.arithmetic" },
-		{ "include": "#keyword.operator" },
-		{ "include": "#constant.language.boolean" },
-		{ "include": "#support.type.primitive" },
-		{ "include": "#support.function" },
-		{ "include": "#string.quoted.single" },
-		{ "include": "#string.quoted.double" },
-		{ "include": "#punctuation.definition" },
-		{ "include": "#punctuation.separator" },
-		{ "include": "#constant.numeric" },
-		{ "include": "#entity.name.namespace" },
-		{ "include": "#entity.name.type" },
-		{ "include": "#entity.name.function" },
-		{ "include": "#variable.parameter" },
-		{ "include": "#variable.other.constant" },
-		{ "include": "#variable" },
-		{ "include": "#invalid.illegal" }
-	],
-	"repository": {
 		"comment.code": {
 			"name": "meta.embedded.cis",
 			"begin": "`",
 			"end": "`",
 			"patterns": [
-				{
-					"name": "comment.block.cis",
-					"begin": "/\\*",
-					"end": "\\*/"
-				},
+				{ "include": "#comment.block" },
 				{
 					"name": "comment.line.number-sign.cis",
 					"match": "#[^`]*"
@@ -97,19 +79,21 @@
 				{ "include": "#storage.modifier" },
 				{ "include": "#storage.type" },
 				{ "include": "#keyword.control.conditional" },
+				{ "include": "#keyword.control.loop" },
 				{ "include": "#keyword.control.flow" },
 				{ "include": "#keyword.operator.relational" },
 				{ "include": "#keyword.operator.logical" },
 				{ "include": "#keyword.operator.arithmetic" },
 				{ "include": "#keyword.operator" },
-				{ "include": "#constant.language.boolean" },
 				{ "include": "#support.type.primitive" },
 				{ "include": "#support.function" },
+				{ "include": "#constant.language.boolean" },
+				{ "include": "#constant.language" },
+				{ "include": "#constant.numeric" },
 				{ "include": "#string.quoted.single" },
 				{ "include": "#string.quoted.double" },
 				{ "include": "#punctuation.definition" },
 				{ "include": "#punctuation.separator" },
-				{ "include": "#constant.numeric" },
 				{ "include": "#entity.name.namespace" },
 				{ "include": "#entity.name.type" },
 				{ "include": "#entity.name.function" },
@@ -126,43 +110,13 @@
 			"name": "variable.other.constant.cis",
 			"match": "(?<=@author\\s+)[\\--9A-Z_a-z]+"
 		},
-		"comment.see": {
-			"name": "markup.underline.link.cis",
-			"match": "(?<=@see\\s+)[!#-;=?-\\[\\]_a-z~]+"
-		},
-		"comment.param.variable": {
+		"comment.param": {
 			"name": "variable.parameter.cis",
 			"match": "(?<=@param\\s+)[0-9A-Z_a-z]+"
 		},
-		"comment.param.separator": {
-			"name": "punctuation.separator.cis",
-			"match": "(?<=@param\\s+[0-9A-Z_a-z]+\\s*):"
-		},
-		"comment.param.type": {
-			"name": "entity.name.type.cis",
-			"match": "(?<=@param\\s+[0-9A-Z_a-z]+\\s*:\\s*)[0-9A-Z_a-z]+"
-		},
-		"comment.param.definition": {
-			"name": "punctuation.definition.cis",
-			"begin": "(?<=@param\\s+[0-9A-Z_a-z]+\\s*:\\s*[0-9A-Z_a-z]+\\s*)\\[",
-			"end": "]",
-			"patterns": [
-				{
-					"name": "keyword.operator.arithmetic.cis",
-					"match": "\\+\\+|--|-"
-				},
-				{ "include": "#constant.numeric" },
-				{ "include": "#variable.other.constant" },
-				{ "include": "#variable" }
-			]
-		},
-		"comment.return": {
-			"name": "entity.name.type.cis",
-			"match": "(?<=@return\\s+)[0-9A-Z_a-z]+"
-		},
 		"comment.since": {
 			"name": "constant.numeric.cis",
-			"match": "(?<=@since\\s+)\\d+(?:\\.\\d+)*[\\--9A-Z_a-z]*"
+			"match": "(?<=@since\\s+)[\\--9A-Z_a-z]+"
 		},
 		"storage.modifier": {
 			"name": "storage.modifier.cis",
@@ -174,7 +128,11 @@
 		},
 		"keyword.control.conditional": {
 			"name": "keyword.control.conditional.cis",
-			"match": "\\b(?:if|for|while|until)\\b"
+			"match": "\\b(?:if|not)\\b"
+		},
+		"keyword.control.loop": {
+			"name": "keyword.control.loop.cis",
+			"match": "\\b(?:while|for)\\b"
 		},
 		"keyword.control.flow": {
 			"name": "keyword.control.flow.cis",
@@ -182,7 +140,7 @@
 		},
 		"keyword.operator.logical": {
 			"name": "keyword.operator.logical.cis",
-			"match": "<<|>>|<~|~>|[!&|~]"
+			"match": "<<|>>|<~|~>|[!&|]|~(?!~)"
 		},
 		"keyword.operator.arithmetic": {
 			"name": "keyword.operator.arithmetic.cis",
@@ -194,23 +152,35 @@
 		},
 		"keyword.operator": {
 			"name": "keyword.operator.cis",
-			"match": "\\.\\.|\\.=|[=?$@]"
-		},
-		"constant.language.boolean": {
-			"name": "constant.language.boolean.cis",
-			"match": "\\b(?:true|false|null)\\b"
+			"match": "\\.\\.|\\.=|~~|[=?$@]"
 		},
 		"support.type.primitive": {
 			"name": "support.type.primitive.cis",
-			"match": "\\b(?:void|bool|int|uint|float|char|str|any)\\b"
+			"match": "\\b(?:void|bool|uint|int|float|char|str|any)\\b"
 		},
 		"support.function": {
 			"name": "support.function.cis",
-			"match": "\\b(?:import|copy)\\b"
+			"match": "\\bimport\\b"
+		},
+		"constant.language.boolean": {
+			"name": "constant.language.boolean.cis",
+			"match": "\\b(?:true|false)\\b"
+		},
+		"constant.language": {
+			"name": "constant.language.cis",
+			"match": "\\b(?:this|null)\\b"
+		},
+		"constant.numeric": {
+			"name": "constant.numeric.cis",
+			"match": "\\b(?:\\d[\\d_]*(?:\\.\\d+)?|0(?:x[0-9A-Fa-f][0-9A-F_a-f]*(?:\\.[0-9A-Fa-f]+)?|o[0-7][0-7_]*(?:\\.[0-7]+)?|b[01][01_]*(?:\\.[01]+)?))\\b"
+		},
+		"constant.character.escape": {
+			"name": "constant.character.escape.cis",
+			"match": "\\\\(?:[\\\\0abefnrtv]|x[0-7]?[0-9A-Fa-f]|o[0-1]?[0-7]{1,2}|u[0-9A-Fa-f]{1,4}|U[0-9A-Fa-f]{1,8})"
 		},
 		"string.quoted.single": {
 			"name": "string.quoted.single.cis",
-			"begin": "'(?=[ -\\[\\]-~]'|\\\\(?:[\\\\'0abefnrtv]|x[0-7]?[0-9A-Fa-f]|o[0-1]?[0-7]{1,2}|u[0-9A-Fa-f]{1,4}|U[0-9A-Fa-f]{1,8})'|')",
+			"begin": "'",
 			"end": "'",
 			"patterns": [
 				{
@@ -235,53 +205,33 @@
 					"begin": "{",
 					"end": "}",
 					"patterns": [
-						{
-							"name": "comment.block.cis",
-							"begin": "/\\*",
-							"end": "\\*/"
-						},
-						{
-							"name": "invalid.cis",
-							"match": "\\b(?:public|mut|async|in|module|const|var|func|if|for|while|until|skip|break|return)\\b"
-						},
-						{
-							"name": "keyword.control.flow.cis",
-							"match": "\\bawait\\b"
-						},
+						{ "include": "#comment.block" },
+						{ "include": "#comment.line.number-sign" },
 						{ "include": "#keyword.operator.relational" },
 						{ "include": "#keyword.operator.logical" },
 						{ "include": "#keyword.operator.arithmetic" },
 						{ "include": "#keyword.operator" },
-						{ "include": "#constant.language.boolean" },
 						{ "include": "#support.type.primitive" },
+						{ "include": "#support.function" },
+						{ "include": "#constant.language.boolean" },
+						{ "include": "#constant.language" },
+						{ "include": "#constant.numeric" },
 						{ "include": "#string.quoted.single" },
 						{
 							"name": "string.quoted.double.cis",
-							"begin": "\"(?=(?:[^\\\\\"]|\\\\[^\"]|\\\\\")*\")",
-							"end": "\"",
-							"patterns": [
-								{
-									"name": "constant.character.escape.cis",
-									"match": "\\\\\""
-								},
-								{ "include": "#constant.character.escape" }
-							]
+							"begin": "\"",
+							"end": "\""
 						},
 						{ "include": "#punctuation.definition" },
 						{ "include": "#punctuation.separator" },
-						{ "include": "#constant.numeric" },
+						{ "include": "#entity.name.namespace" },
 						{ "include": "#entity.name.type" },
 						{ "include": "#entity.name.function" },
 						{ "include": "#variable.other.constant" },
-						{ "include": "#variable" },
-						{ "include": "#invalid.illegal" }
+						{ "include": "#variable" }
 					]
 				}
 			]
-		},
-		"constant.character.escape": {
-			"name": "constant.character.escape.cis",
-			"match": "\\\\(?:[\\\\0abefnrtv]|x[0-7]?[0-9A-Fa-f]|o[0-1]?[0-7]{1,2}|u[0-9A-Fa-f]{1,4}|U[0-9A-Fa-f]{1,8})"
 		},
 		"punctuation.definition": {
 			"name": "punctuation.definition.cis",
@@ -291,37 +241,29 @@
 			"name": "punctuation.separator.cis",
 			"match": "[,.:;]"
 		},
-		"constant.numeric": {
-			"name": "constant.numeric.cis",
-			"match": "\\b(?:(?:\\d+_)*(?:\\d+\\.)?\\d+|0x(?:[0-9A-Fa-f]+_)*(?:[0-9A-Fa-f]+\\.)?[0-9A-Fa-f]+|0o(?:[0-7]+_)*(?:[0-7]+\\.)?[0-7]+|0b(?:[01]+_)*(?:[01]+\\.)?[01]+)\\b"
-		},
 		"entity.name.namespace": {
 			"name": "entity.name.namespace.cis",
-			"match": "(?<=\\bmodule\\s+)[0-9A-Z_a-z]+\\b"
+			"match": "(?<=\\bmodule\\s)[0-9A-Z_a-z]+\\b"
 		},
 		"entity.name.type": {
 			"name": "entity.name.type.cis",
-			"match": "(?<=:\\s*)[0-9A-Z_a-z]+\\b|(?<=\\b(const|var)\\s+)[0-9A-Z_a-z]+(?=(?:\\s*=\\s*\\1)?\\s*\\{)|\\b[0-9_]*[A-Z][0-9A-Z_a-z]*(?=\\s*\\()|(?<!\\b(?:const|var)\\s+)[0-9_]*[A-Z]+[0-9_]*[a-z]+[0-9A-Z_a-z]*\\b"
+			"match": "(?<=:\\s)[0-9A-Z_a-z]+\\b|\\b[0-9_]*[A-Z]+[0-9_]*[a-z][0-9A-Z_a-z]*\\b"
 		},
 		"entity.name.function": {
 			"name": "entity.name.function.cis",
-			"match": "(?<=\\bfunc\\s+)[0-9A-Z_a-z]+\\b|\\b[0-9A-Z_a-z]+(?=\\s*\\()|(?<!\\b(?:const|var)\\s+)\\b[0-9_]*[a-z]+[0-9_]*[A-Z]+[0-9A-Z_a-z]*\\b"
+			"match": "(?<=\\bfunc\\s)[0-9A-Z_a-z]+\\b|\\b[0-9A-Z_a-z]+(?=\\()"
 		},
 		"variable.parameter": {
 			"name": "variable.parameter.cis",
-			"match": "(?<=\\bfunc\\s+[0-9A-Z_a-z]+\\s*\\([^)]*)\\b[0-9A-Z_a-z]+\\b(?=[^)]*\\))"
+			"match": "(?<=\\bfunc\\s[0-9A-Z_a-z]+\\(([^)]*,\\s)*)\\b[0-9A-Z_a-z]+\\b(?=[^)]*\\))"
 		},
 		"variable.other.constant": {
 			"name": "variable.other.constant.cis",
-			"match": "(?<=\\bconst\\s+)\\b[0-9A-Z_a-z]+\\b|\\b[0-9_]*[A-Z][0-9A-Z_]*\\b"
+			"match": "(?<=\\bconst\\s)[0-9A-Z_a-z]+\\b|\\b[0-9_]*[A-Z][0-9A-Z_]*\\b"
 		},
 		"variable": {
 			"name": "variable.cis",
 			"match": "\\b[0-9A-Z_a-z]+\\b"
-		},
-		"invalid.illegal": {
-			"name": "invalid.illegal.cis",
-			"match": "'(?:[^']*?'|.*?\\s)|[^\\s]"
 		}
 	},
 	"scopeName": "source.cis"

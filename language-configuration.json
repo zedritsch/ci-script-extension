@@ -15,11 +15,6 @@
 			"notIn": [ "comment", "string" ]
 		},
 		{
-			"open": "?",
-			"close": "!",
-			"notIn": [ "comment", "string" ]
-		},
-		{
 			"open": "'",
 			"close": "'",
 			"notIn": [ "comment", "string" ]
@@ -42,9 +37,7 @@
 		[ "/", "/" ],
 		[ "*", "*" ],
 		[ "#", "#" ],
-		[ " ", " " ],
 		[ "?", "!" ],
-		[ "\\", "\\" ],
 		[ "'", "'" ],
 		[ "\"", "\"" ],
 		[ "`", "`" ],
@@ -52,17 +45,6 @@
 		[ "[", "]" ],
 		[ "{", "}" ]
 	],
-	"autoCloseBefore": "\t\n !#$%&*+,-./:;<=>?@^|~",
-	"folding": {
-		"offSide": true,
-		"markers": {
-			"start": "[([{]",
-			"end": "[)\\]}]"
-		}
-	},
-	"wordPattern": "\\b[0-9A-Z_a-z]+\\b",
-	"indentationRules": {
-		"increaseIndentPattern": "[([{]\\s*$",
-		"decreaseIndentPattern": "(?<![([{].*)[)\\]}]\\s*$"
-	}
+	"autoCloseBefore": "#!&|~<+-*/%^=?$@. \t",
+	"wordPattern": "\\b[0-9A-Z_a-z]+\\b"
 }
