@@ -26,6 +26,7 @@
 	],
 	"icon": "img/icon.png",
 	"l10n": "l10n",
+	"main": "extension",
 	"contributes": {
 		"languages": [
 			{
@@ -55,31 +56,23 @@
 		"configuration": {
 			"title": "CI-Script",
 			"properties": {
-				"CIS.lsp.enable": {
-					"description": "%configuration.lsp.enable.description%",
+				"languageServer.enable": {
+					"description": "%languageServer.enable%",
 					"type": "boolean",
 					"default": true,
-					"order": 0,
 					"scope": "resource"
 				},
-				"CIS.lsp.installLocation": {
-					"description": "%configuration.lsp.installLocation.description%",
+				"languageServer.location": {
+					"description": "%languageServer.location%",
 					"type": "string",
-					"default": "",
-					"order": 1,
-					"scope": "resource"
-				},
-				"CIS.lsp.maxNumberOfProblems": {
-					"description": "%configuration.lsp.maxNumberOfProblems.description%",
-					"type": "number",
-					"default": 100,
-					"order": 2,
 					"scope": "resource"
 				}
 			}
 		},
 		"configurationDefaults": {
-			"[ci-script]": { "editor.insertSpaces": false }
+			"[ci-script]": {
+				"editor.insertSpaces": false
+			}
 		}
 	}
 }

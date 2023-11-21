@@ -6,179 +6,56 @@
 			"begin": "/\\*",
 			"end": "\\*/",
 			"patterns": [
-				{ "include": "#comment.block" },
+				{
+					"name": "comment.block.cis",
+					"begin": "/\\*",
+					"end": "\\*/"
+				},
 				{
 					"name": "comment.block.cis",
 					"match": "\\\\`"
 				},
-				{ "include": "#comment.code" },
-				{ "include": "#comment.tag" },
-				{ "include": "#comment.author" },
-				{ "include": "#comment.param" },
-				{ "include": "#comment.since" }
-			]
-		},
-		{ "include": "#comment.line.number-sign" },
-		{ "include": "#storage.modifier" },
-		{ "include": "#storage.type" },
-		{ "include": "#keyword.control.conditional" },
-		{ "include": "#keyword.control.loop" },
-		{ "include": "#keyword.control.flow" },
-		{ "include": "#keyword.operator.relational" },
-		{ "include": "#keyword.operator.logical" },
-		{ "include": "#keyword.operator.arithmetic" },
-		{ "include": "#keyword.operator" },
-		{ "include": "#support.type.primitive" },
-		{ "include": "#support.function" },
-		{ "include": "#constant.language.boolean" },
-		{ "include": "#constant.language" },
-		{ "include": "#constant.numeric" },
-		{ "include": "#string.quoted.single" },
-		{ "include": "#string.quoted.double" },
-		{ "include": "#punctuation.definition" },
-		{ "include": "#punctuation.separator" },
-		{ "include": "#entity.name.namespace" },
-		{ "include": "#entity.name.type" },
-		{ "include": "#entity.name.function" },
-		{ "include": "#variable.parameter" },
-		{ "include": "#variable.other.constant" },
-		{ "include": "#variable" }
-	],
-	"repository": {
-		"comment.block": {
-			"name": "comment.block.cis",
-			"begin": "/\\*",
-			"end": "\\*/"
-		},
-		"comment.line.number-sign": {
-			"name": "comment.line.number-sign.cis",
-			"begin": "#",
-			"end": "\\n",
-			"patterns": [
 				{
-					"name": "comment.line.number-sign.cis",
-					"match": "\\\\`"
+					"name": "meta.embedded.cis",
+					"begin": "`",
+					"end": "`",
+					"patterns": [ { "include": "$self" } ]
 				},
-				{ "include": "#comment.code" },
-				{ "include": "#comment.tag" },
-				{ "include": "#comment.author" },
-				{ "include": "#comment.param" },
-				{ "include": "#comment.since" }
-			]
-		},
-		"comment.code": {
-			"name": "meta.embedded.cis",
-			"begin": "`",
-			"end": "`",
-			"patterns": [
-				{ "include": "#comment.block" },
 				{
-					"name": "comment.line.number-sign.cis",
-					"match": "#[^`]*"
+					"name": "keyword.cis",
+					"match": "@(?:author|deprecated|param|return|s(?:ee|ince))\\b"
 				},
-				{ "include": "#storage.modifier" },
-				{ "include": "#storage.type" },
-				{ "include": "#keyword.control.conditional" },
-				{ "include": "#keyword.control.loop" },
-				{ "include": "#keyword.control.flow" },
-				{ "include": "#keyword.operator.relational" },
-				{ "include": "#keyword.operator.logical" },
-				{ "include": "#keyword.operator.arithmetic" },
-				{ "include": "#keyword.operator" },
-				{ "include": "#support.type.primitive" },
-				{ "include": "#support.function" },
-				{ "include": "#constant.language.boolean" },
-				{ "include": "#constant.language" },
-				{ "include": "#constant.numeric" },
-				{ "include": "#string.quoted.single" },
-				{ "include": "#string.quoted.double" },
-				{ "include": "#punctuation.definition" },
-				{ "include": "#punctuation.separator" },
-				{ "include": "#entity.name.namespace" },
-				{ "include": "#entity.name.type" },
-				{ "include": "#entity.name.function" },
-				{ "include": "#variable.parameter" },
-				{ "include": "#variable.other.constant" },
-				{ "include": "#variable" }
+				{
+					"name": "variable.other.constant.cis",
+					"match": "(?<=@author\\s)[\\--9A-Z_a-z]+"
+				},
+				{
+					"name": "variable.parameter.cis",
+					"match": "(?<=@param\\s)[0-9A-Z_a-z]+"
+				},
+				{
+					"name": "constant.numeric.cis",
+					"match": "(?<=@since\\s)[\\--9A-Z_a-z]+"
+				}
 			]
 		},
-		"comment.tag": {
+		{
+			"name": "comment.line.cis",
+			"match": "#.*"
+		},
+		{
 			"name": "keyword.cis",
-			"match": "@(?:author|see|param|return|since|deprecated)\\b"
+			"match": "\\b(?:a(?:sync|uto|wait)|b(?:ool|reak)|c(?:har|onst)|enum|f(?:alse|loat|or|rom|unc)|i(?:f|mport|nt?)|m(?:odule|ut)|n(?:ot|ull)|public|return|s(?:kip|tr(?:uct)?)|t(?:his|rue)|uint|v(?:ar|oid)|while)\\b"
 		},
-		"comment.author": {
-			"name": "variable.other.constant.cis",
-			"match": "(?<=@author\\s+)[\\--9A-Z_a-z]+"
-		},
-		"comment.param": {
-			"name": "variable.parameter.cis",
-			"match": "(?<=@param\\s+)[0-9A-Z_a-z]+"
-		},
-		"comment.since": {
-			"name": "constant.numeric.cis",
-			"match": "(?<=@since\\s+)[\\--9A-Z_a-z]+"
-		},
-		"storage.modifier": {
-			"name": "storage.modifier.cis",
-			"match": "\\b(?:public|mut|async|in)\\b"
-		},
-		"storage.type": {
-			"name": "storage.type.cis",
-			"match": "\\b(?:module|const|var|func)\\b"
-		},
-		"keyword.control.conditional": {
-			"name": "keyword.control.conditional.cis",
-			"match": "\\b(?:if|not)\\b"
-		},
-		"keyword.control.loop": {
-			"name": "keyword.control.loop.cis",
-			"match": "\\b(?:while|for)\\b"
-		},
-		"keyword.control.flow": {
-			"name": "keyword.control.flow.cis",
-			"match": "\\b(?:skip|break|await|return)\\b"
-		},
-		"keyword.operator.logical": {
-			"name": "keyword.operator.logical.cis",
-			"match": "<<|>>|<~|~>|[!&|]|~(?!~)"
-		},
-		"keyword.operator.arithmetic": {
-			"name": "keyword.operator.arithmetic.cis",
-			"match": "\\+\\+|--|[+\\-*/%^]"
-		},
-		"keyword.operator.relational": {
-			"name": "keyword.operator.relational.cis",
-			"match": "==|!=|<=|>=|&&|\\|\\||[<>](?![<>~])"
-		},
-		"keyword.operator": {
+		{
 			"name": "keyword.operator.cis",
-			"match": "\\.\\.|\\.=|~~|[=?$@]"
+			"match": "!=?|&&?|\\+\\+?|--?|\\.[.=]|<[<=~]?|==?|>[=>]?|\\|\\|?|~[>~]?|[$%*/?@^]"
 		},
-		"support.type.primitive": {
-			"name": "support.type.primitive.cis",
-			"match": "\\b(?:void|bool|uint|int|float|char|str|any)\\b"
-		},
-		"support.function": {
-			"name": "support.function.cis",
-			"match": "\\bimport\\b"
-		},
-		"constant.language.boolean": {
-			"name": "constant.language.boolean.cis",
-			"match": "\\b(?:true|false)\\b"
-		},
-		"constant.language": {
-			"name": "constant.language.cis",
-			"match": "\\b(?:this|null)\\b"
-		},
-		"constant.numeric": {
+		{
 			"name": "constant.numeric.cis",
-			"match": "\\b(?:\\d[\\d_]*(?:\\.\\d+)?|0(?:x[0-9A-Fa-f][0-9A-F_a-f]*(?:\\.[0-9A-Fa-f]+)?|o[0-7][0-7_]*(?:\\.[0-7]+)?|b[01][01_]*(?:\\.[01]+)?))\\b"
+			"match": "\\b(?:0(?:x[0-9A-Fa-f]+[0-9A-F_a-f]*(?:\\.[0-9A-Fa-f]+)?|o[0-7]+[0-7_]*(?:\\.[0-7]+)?|b[01]+[01_]*(?:\\.[01]+)?)?|\\d+[\\d_]*(?:\\.\\d+)?)\\b"
 		},
-		"constant.character.escape": {
-			"name": "constant.character.escape.cis",
-			"match": "\\\\(?:[\\\\0abefnrtv]|x[0-7]?[0-9A-Fa-f]|o[0-1]?[0-7]{1,2}|u[0-9A-Fa-f]{1,4}|U[0-9A-Fa-f]{1,8})"
-		},
-		"string.quoted.single": {
+		{
 			"name": "string.quoted.single.cis",
 			"begin": "'",
 			"end": "'",
@@ -190,7 +67,7 @@
 				{ "include": "#constant.character.escape" }
 			]
 		},
-		"string.quoted.double": {
+		{
 			"name": "string.quoted.double.cis",
 			"begin": "\"",
 			"end": "\"",
@@ -204,66 +81,43 @@
 					"name": "meta.embedded.cis",
 					"begin": "{",
 					"end": "}",
-					"patterns": [
-						{ "include": "#comment.block" },
-						{ "include": "#comment.line.number-sign" },
-						{ "include": "#keyword.operator.relational" },
-						{ "include": "#keyword.operator.logical" },
-						{ "include": "#keyword.operator.arithmetic" },
-						{ "include": "#keyword.operator" },
-						{ "include": "#support.type.primitive" },
-						{ "include": "#support.function" },
-						{ "include": "#constant.language.boolean" },
-						{ "include": "#constant.language" },
-						{ "include": "#constant.numeric" },
-						{ "include": "#string.quoted.single" },
-						{
-							"name": "string.quoted.double.cis",
-							"begin": "\"",
-							"end": "\""
-						},
-						{ "include": "#punctuation.definition" },
-						{ "include": "#punctuation.separator" },
-						{ "include": "#entity.name.namespace" },
-						{ "include": "#entity.name.type" },
-						{ "include": "#entity.name.function" },
-						{ "include": "#variable.other.constant" },
-						{ "include": "#variable" }
-					]
+					"patterns": [ { "include": "$self" } ]
 				}
 			]
 		},
-		"punctuation.definition": {
-			"name": "punctuation.definition.cis",
-			"match": "[()\\[\\]{}]"
+		{
+			"name": "punctuation.cis",
+			"match": "[(),.:;\\[\\]{}]"
 		},
-		"punctuation.separator": {
-			"name": "punctuation.separator.cis",
-			"match": "[,.:;]"
-		},
-		"entity.name.namespace": {
+		{
 			"name": "entity.name.namespace.cis",
 			"match": "(?<=\\bmodule\\s)[0-9A-Z_a-z]+\\b"
 		},
-		"entity.name.type": {
+		{
 			"name": "entity.name.type.cis",
-			"match": "(?<=:\\s)[0-9A-Z_a-z]+\\b|\\b[0-9_]*[A-Z]+[0-9_]*[a-z][0-9A-Z_a-z]*\\b"
+			"match": "(?<=(?::|\\b(?:enum|struct))\\s)[0-9A-Z_a-z]+\\b|\\b[0-9A-Z_a-z]+(?=\\.)"
 		},
-		"entity.name.function": {
+		{
 			"name": "entity.name.function.cis",
 			"match": "(?<=\\bfunc\\s)[0-9A-Z_a-z]+\\b|\\b[0-9A-Z_a-z]+(?=\\()"
 		},
-		"variable.parameter": {
+		{
 			"name": "variable.parameter.cis",
-			"match": "(?<=\\bfunc\\s[0-9A-Z_a-z]+\\(([^)]*,\\s)*)\\b[0-9A-Z_a-z]+\\b(?=[^)]*\\))"
+			"match": "(?<=\\bfunc\\s.*)[0-9A-Z_a-z]+(?=:)"
 		},
-		"variable.other.constant": {
+		{
 			"name": "variable.other.constant.cis",
-			"match": "(?<=\\bconst\\s)[0-9A-Z_a-z]+\\b|\\b[0-9_]*[A-Z][0-9A-Z_]*\\b"
+			"match": "(?<=\\.|\\bconst\\s)[0-9A-Z_a-z]+\\b"
 		},
-		"variable": {
+		{
 			"name": "variable.cis",
 			"match": "\\b[0-9A-Z_a-z]+\\b"
+		}
+	],
+	"repository": {
+		"constant.character.escape": {
+			"name": "constant.character.escape.cis",
+			"match": "\\\\(?:[\\\\0abefnrtv]|x[0-7]?[0-9A-Fa-f]|o[0-1]?[0-7]{1,2}|u[0-9A-Fa-f]{1,4}|U[0-9A-Fa-f]{1,8})"
 		}
 	},
 	"scopeName": "source.cis"

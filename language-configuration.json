@@ -45,6 +45,6 @@
 		[ "[", "]" ],
 		[ "{", "}" ]
 	],
-	"autoCloseBefore": "#!&|~<+-*/%^=?$@. \t",
+	"autoCloseBefore": "\t #%&)*+,-./:;<=>?]^|}~",
 	"wordPattern": "\\b[0-9A-Z_a-z]+\\b"
 }
