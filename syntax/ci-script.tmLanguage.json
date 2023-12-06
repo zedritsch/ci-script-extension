@@ -2,83 +2,69 @@
 	"name": "CI-Script",
 	"patterns": [
 		{
-			"name": "comment.block.cis",
+			"name": "comment",
 			"begin": "/\\*",
 			"end": "\\*/",
 			"patterns": [
 				{
-					"name": "comment.block.cis",
 					"begin": "/\\*",
 					"end": "\\*/"
 				},
+				{ "match": "\\\\`" },
 				{
-					"name": "comment.block.cis",
-					"match": "\\\\`"
-				},
-				{
-					"name": "meta.embedded.cis",
+					"name": "meta.embedded",
 					"begin": "`",
 					"end": "`",
 					"patterns": [ { "include": "$self" } ]
-				},
-				{
-					"name": "keyword.cis",
-					"match": "@(?:author|deprecated|param|return|s(?:ee|ince))\\b"
-				},
-				{
-					"name": "variable.other.constant.cis",
-					"match": "(?<=@author\\s)[\\--9A-Z_a-z]+"
-				},
-				{
-					"name": "variable.parameter.cis",
-					"match": "(?<=@param\\s)[0-9A-Z_a-z]+"
-				},
-				{
-					"name": "constant.numeric.cis",
-					"match": "(?<=@since\\s)[\\--9A-Z_a-z]+"
 				}
 			]
 		},
 		{
-			"name": "comment.line.cis",
+			"name": "comment",
 			"match": "#.*"
 		},
 		{
-			"name": "keyword.cis",
-			"match": "\\b(?:a(?:sync|uto|wait)|b(?:ool|reak)|c(?:har|onst)|enum|f(?:alse|loat|or|rom|unc)|i(?:f|mport|nt?)|m(?:odule|ut)|n(?:ot|ull)|public|return|s(?:kip|tr(?:uct)?)|t(?:his|rue)|uint|v(?:ar|oid)|while)\\b"
+			"name": "keyword",
+			"match": "\\b(?:async|auto|await|bool|break|char|const|enum|export|false|for|from|func|if|import|in|module|mut|not|null|return|skip|str|struct|this|true|var|void|while|[iu](?:8|16)|[iuf](?:32|64|128))\\b"
 		},
 		{
-			"name": "keyword.operator.cis",
+			"name": "keyword.operator",
 			"match": "!=?|&&?|\\+\\+?|--?|\\.[.=]|<[<=~]?|==?|>[=>]?|\\|\\|?|~[>~]?|[$%*/?@^]"
 		},
 		{
-			"name": "constant.numeric.cis",
-			"match": "\\b(?:0(?:x[0-9A-Fa-f]+[0-9A-F_a-f]*(?:\\.[0-9A-Fa-f]+)?|o[0-7]+[0-7_]*(?:\\.[0-7]+)?|b[01]+[01_]*(?:\\.[01]+)?)?|\\d+[\\d_]*(?:\\.\\d+)?)\\b"
+			"name": "constant.numeric",
+			"match": "\\b(?:0(?:x(?:[0-9A-Fa-f]+_)*[0-9A-Fa-f]+|o(?:[0-7]+_)*[0-7]+|b(?:[01]+_)*[01]+)?|\\d+[\\d_]*(?:\\.\\d+)?)\\b"
 		},
 		{
-			"name": "string.quoted.single.cis",
+			"name": "string",
 			"begin": "'",
 			"end": "'",
 			"patterns": [
 				{
-					"name": "constant.character.escape.cis",
-					"match": "\\\\'"
+					"name": "constant.character.escape",
+					"match": "\\\\[\\\\'0abefnrtv]"
 				},
-				{ "include": "#constant.character.escape" }
+				{
+					"name": "invalid",
+					"match": "\\\\."
+				}
 			]
 		},
 		{
-			"name": "string.quoted.double.cis",
+			"name": "string",
 			"begin": "\"",
 			"end": "\"",
 			"patterns": [
 				{
-					"name": "constant.character.escape.cis",
-					"match": "\\\\\"|\\\\{"
+					"name": "constant.character.escape",
+					"match": "\\\\(?:[\\\\\"0abefnrtv{]|x[0-7]?[0-9A-Fa-f]|o[0-1]?[0-7]{1,2}|u[0-9A-Fa-f]{1,4}|U[0-9A-Fa-f]{1,8})"
 				},
-				{ "include": "#constant.character.escape" },
 				{
-					"name": "meta.embedded.cis",
+					"name": "invalid",
+					"match": "\\\\."
+				},
+				{
+					"name": "meta.embedded",
 					"begin": "{",
 					"end": "}",
 					"patterns": [ { "include": "$self" } ]
@@ -86,39 +72,25 @@
 			]
 		},
 		{
-			"name": "punctuation.cis",
-			"match": "[(),.:;\\[\\]{}]"
-		},
-		{
-			"name": "entity.name.namespace.cis",
-			"match": "(?<=\\bmodule\\s)[0-9A-Z_a-z]+\\b"
-		},
-		{
-			"name": "entity.name.type.cis",
+			"name": "entity.name.type",
 			"match": "(?<=(?::|\\b(?:enum|struct))\\s)[0-9A-Z_a-z]+\\b|\\b[0-9A-Z_a-z]+(?=\\.)"
 		},
 		{
-			"name": "entity.name.function.cis",
+			"name": "entity.name.function",
 			"match": "(?<=\\bfunc\\s)[0-9A-Z_a-z]+\\b|\\b[0-9A-Z_a-z]+(?=\\()"
 		},
 		{
-			"name": "variable.parameter.cis",
-			"match": "(?<=\\bfunc\\s.*)[0-9A-Z_a-z]+(?=:)"
+			"name": "variable.parameter",
+			"match": "(\\bfunc\\s.*)[0-9A-Z_a-z]+(?=:)"
 		},
 		{
-			"name": "variable.other.constant.cis",
-			"match": "(?<=\\.|\\bconst\\s)[0-9A-Z_a-z]+\\b"
+			"name": "variable.other.constant",
+			"match": "(?<=\\bconst\\s|[0-9A-Z_a-z]\\.)[0-9A-Z_a-z]+\\b|(?<!\\bvar\\s)\\b(?:[0-9A-Z_a-z]+(?=;)|[0-9_]*[A-Z][0-9A-Z_]*\\b)"
 		},
 		{
-			"name": "variable.cis",
+			"name": "variable",
 			"match": "\\b[0-9A-Z_a-z]+\\b"
 		}
 	],
-	"repository": {
-		"constant.character.escape": {
-			"name": "constant.character.escape.cis",
-			"match": "\\\\(?:[\\\\0abefnrtv]|x[0-7]?[0-9A-Fa-f]|o[0-1]?[0-7]{1,2}|u[0-9A-Fa-f]{1,4}|U[0-9A-Fa-f]{1,8})"
-		}
-	},
 	"scopeName": "source.cis"
 }
