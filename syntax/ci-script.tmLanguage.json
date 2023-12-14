@@ -2,7 +2,7 @@
 	"name": "CI-Script",
 	"patterns": [
 		{
-			"name": "comment",
+			"name": "comment.cis",
 			"begin": "/\\*",
 			"end": "\\*/",
 			"patterns": [
@@ -12,7 +12,7 @@
 				},
 				{ "match": "\\\\`" },
 				{
-					"name": "meta.embedded",
+					"name": "meta.embedded.cis",
 					"begin": "`",
 					"end": "`",
 					"patterns": [ { "include": "$self" } ]
@@ -20,51 +20,51 @@
 			]
 		},
 		{
-			"name": "comment",
+			"name": "comment.cis",
 			"match": "#.*"
 		},
 		{
-			"name": "keyword",
+			"name": "keyword.cis",
 			"match": "\\b(?:async|auto|await|bool|break|char|const|enum|export|false|for|from|func|if|import|in|module|mut|not|null|return|skip|str|struct|this|true|var|void|while|[iu](?:8|16)|[iuf](?:32|64|128))\\b"
 		},
 		{
-			"name": "keyword.operator",
+			"name": "keyword.operator.cis",
 			"match": "!=?|&&?|\\+\\+?|--?|\\.[.=]|<[<=~]?|==?|>[=>]?|\\|\\|?|~[>~]?|[$%*/?@^]"
 		},
 		{
-			"name": "constant.numeric",
+			"name": "constant.numeric.cis",
 			"match": "\\b(?:0(?:x(?:[0-9A-Fa-f]+_)*[0-9A-Fa-f]+|o(?:[0-7]+_)*[0-7]+|b(?:[01]+_)*[01]+)?|\\d+[\\d_]*(?:\\.\\d+)?)\\b"
 		},
 		{
-			"name": "string",
+			"name": "string.cis",
 			"begin": "'",
 			"end": "'",
 			"patterns": [
 				{
-					"name": "constant.character.escape",
-					"match": "\\\\[\\\\'0abefnrtv]"
+					"name": "constant.character.escape.cis",
+					"match": "\\\\['0abefnrtv\\\\]"
 				},
 				{
-					"name": "invalid",
+					"name": "invalid.cis",
 					"match": "\\\\."
 				}
 			]
 		},
 		{
-			"name": "string",
+			"name": "string.cis",
 			"begin": "\"",
 			"end": "\"",
 			"patterns": [
 				{
-					"name": "constant.character.escape",
-					"match": "\\\\(?:[\\\\\"0abefnrtv{]|x[0-7]?[0-9A-Fa-f]|o[0-1]?[0-7]{1,2}|u[0-9A-Fa-f]{1,4}|U[0-9A-Fa-f]{1,8})"
+					"name": "constant.character.escape.cis",
+					"match": "\\\\(?:[\"0abefnrtv\\\\{]|x[0-7]?[0-9A-Fa-f]|o[0-1]?[0-7]{1,2}|u[0-9A-Fa-f]{1,4}|U[0-9A-Fa-f]{1,8})"
 				},
 				{
-					"name": "invalid",
+					"name": "invalid.cis",
 					"match": "\\\\."
 				},
 				{
-					"name": "meta.embedded",
+					"name": "meta.embedded.cis",
 					"begin": "{",
 					"end": "}",
 					"patterns": [ { "include": "$self" } ]
@@ -72,23 +72,23 @@
 			]
 		},
 		{
-			"name": "entity.name.type",
-			"match": "(?<=(?::|\\b(?:enum|struct))\\s)[0-9A-Z_a-z]+\\b|\\b[0-9A-Z_a-z]+(?=\\.)"
+			"name": "entity.name.type.cis",
+			"match": "(?<=:\\s*|\\b(?:enum|struct)\\s+)[0-9A-Z_a-z]+\\b|\\b[0-9A-Z_a-z]+(?!\\.[0-9A-Z_a-z]+\\()(?=\\.[0-9A-Z_a-z]+)"
 		},
 		{
-			"name": "entity.name.function",
-			"match": "(?<=\\bfunc\\s)[0-9A-Z_a-z]+\\b|\\b[0-9A-Z_a-z]+(?=\\()"
+			"name": "entity.name.function.cis",
+			"match": "(?<=\\bfunc\\s+)[0-9A-Z_a-z]+\\b|\\b[0-9A-Z_a-z]+(?=\\()"
 		},
 		{
-			"name": "variable.parameter",
-			"match": "(\\bfunc\\s.*)[0-9A-Z_a-z]+(?=:)"
+			"name": "variable.parameter.cis",
+			"match": "(?<=\\bfunc\\s.*)[0-9A-Z_a-z]+(?=\\s*:)"
 		},
 		{
-			"name": "variable.other.constant",
-			"match": "(?<=\\bconst\\s|[0-9A-Z_a-z]\\.)[0-9A-Z_a-z]+\\b|(?<!\\bvar\\s)\\b(?:[0-9A-Z_a-z]+(?=;)|[0-9_]*[A-Z][0-9A-Z_]*\\b)"
+			"name": "variable.other.constant.cis",
+			"match": "(?<=\\bconst\\s+|[0-9A-Z_a-z]\\.)[0-9A-Z_a-z]+\\b|(?<!\\b(?:mut|var)\\s+)\\b[0-9_]*[A-Z][0-9A-Z_a-z]*\\b"
 		},
 		{
-			"name": "variable",
+			"name": "variable.cis",
 			"match": "\\b[0-9A-Z_a-z]+\\b"
 		}
 	],

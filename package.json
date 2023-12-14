@@ -2,12 +2,12 @@
 	"name": "ci-script-for-vs-code",
 	"displayName": "CI-Script for VS-Code",
 	"description": "CI-Script support for Visual Studio Code",
-	"publisher": "Zedritsch",
+	"publisher": "zedritsch",
 	"license": "MIT",
 	"version": "1.0.0",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/CI-Script/CI-Script-for-VS-Code"
+		"url": "https://github.com/zedritsch/ci-script-for-vs-code"
 	},
 	"engines": {
 		"vscode": "^1.75.0"
