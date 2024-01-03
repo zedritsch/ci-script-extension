@@ -9,9 +9,7 @@
 		"type": "git",
 		"url": "https://github.com/zedritsch/ci-script-for-vs-code"
 	},
-	"engines": {
-		"vscode": "^1.75.0"
-	},
+	"engines": { "vscode": "^1.75.0" },
 	"categories": [
 		"Programming Languages",
 		"Debuggers",
@@ -26,11 +24,11 @@
 	],
 	"icon": "img/icon.png",
 	"l10n": "l10n",
-	"main": "extension",
+	"main": null,
 	"contributes": {
 		"languages": [
 			{
-				"id": "ci-script",
+				"id": "cis",
 				"icon": {
 					"dark": "img/dark.png",
 					"light": "img/light.png"
@@ -40,17 +38,15 @@
 					"ci-script",
 					"cis"
 				],
-				"extensions": [
-					".cis"
-				],
+				"extensions": [ ".cis" ],
 				"configuration": "language-configuration.json"
 			}
 		],
 		"grammars": [
 			{
-				"language": "ci-script",
+				"language": "cis",
 				"scopeName": "source.cis",
-				"path": "syntax/ci-script.tmLanguage.json"
+				"path": "syntax/cis.tmLanguage.json"
 			}
 		],
 		"configuration": {
@@ -70,9 +66,7 @@
 			}
 		},
 		"configurationDefaults": {
-			"[ci-script]": {
-				"editor.insertSpaces": false
-			}
+			"[cis]": { "editor.insertSpaces": false }
 		}
 	}
 }

@@ -1,15 +1,11 @@
 {
-	"name": "CI-Script",
+	"scopeName": "source.cis",
 	"patterns": [
 		{
 			"name": "comment.cis",
 			"begin": "/\\*",
 			"end": "\\*/",
 			"patterns": [
-				{
-					"begin": "/\\*",
-					"end": "\\*/"
-				},
 				{ "match": "\\\\`" },
 				{
 					"name": "meta.embedded.cis",
@@ -25,7 +21,7 @@
 		},
 		{
 			"name": "keyword.cis",
-			"match": "\\b(?:async|auto|await|bool|break|char|const|enum|export|false|for|from|func|if|import|in|module|mut|not|null|return|skip|str|struct|this|true|var|void|while|[iu](?:8|16)|[iuf](?:32|64|128))\\b"
+			"match": "\\b(a(sync|uto|wait)|b(ool|reak)|c(har|onst)|e(num|xport)|f(128|32|64|alse|or|rom|unc)|i([fn]|mport)|[iu](1(28|6)|32|64|8)|m(odule|ut)|n(ot|ull)|return|s(kip|tr|truct)|t(his|rue)|v(ar|oid)|while)\\b"
 		},
 		{
 			"name": "keyword.operator.cis",
@@ -33,7 +29,7 @@
 		},
 		{
 			"name": "constant.numeric.cis",
-			"match": "\\b(?:0(?:x(?:[0-9A-Fa-f]+_)*[0-9A-Fa-f]+|o(?:[0-7]+_)*[0-7]+|b(?:[01]+_)*[01]+)?|\\d+[\\d_]*(?:\\.\\d+)?)\\b"
+			"match": "\\b(0(x([0-9A-Fa-f]+_)*[0-9A-Fa-f]+|o([0-7]+_)*[0-7]+|b([01]+_)*[01]+)?|\\d+[\\d_]*(\\.\\d+)?)\\b"
 		},
 		{
 			"name": "string.cis",
@@ -42,7 +38,7 @@
 			"patterns": [
 				{
 					"name": "constant.character.escape.cis",
-					"match": "\\\\['0abefnrtv\\\\]"
+					"match": "\\\\(['0abefnrtv\\\\]|x[0-7]?[0-9A-Fa-f])"
 				},
 				{
 					"name": "invalid.cis",
@@ -57,7 +53,7 @@
 			"patterns": [
 				{
 					"name": "constant.character.escape.cis",
-					"match": "\\\\(?:[\"0abefnrtv\\\\{]|x[0-7]?[0-9A-Fa-f]|o[0-1]?[0-7]{1,2}|u[0-9A-Fa-f]{1,4}|U[0-9A-Fa-f]{1,8})"
+					"match": "\\\\([\"0abefnrtv\\\\{]|x[0-7]?[0-9A-Fa-f]|u[0-9A-Fa-f]{1,4}|U[0-9A-Fa-f]{1,8})"
 				},
 				{
 					"name": "invalid.cis",
@@ -73,7 +69,7 @@
 		},
 		{
 			"name": "entity.name.type.cis",
-			"match": "(?<=:\\s*|\\b(?:enum|struct)\\s+)[0-9A-Z_a-z]+\\b|\\b[0-9A-Z_a-z]+(?!\\.[0-9A-Z_a-z]+\\()(?=\\.[0-9A-Z_a-z]+)"
+			"match": "(?<=:\\s*|\\b(enum|struct)\\s+)[0-9A-Z_a-z]+\\b"
 		},
 		{
 			"name": "entity.name.function.cis",
@@ -85,12 +81,11 @@
 		},
 		{
 			"name": "variable.other.constant.cis",
-			"match": "(?<=\\bconst\\s+|[0-9A-Z_a-z]\\.)[0-9A-Z_a-z]+\\b|(?<!\\b(?:mut|var)\\s+)\\b[0-9_]*[A-Z][0-9A-Z_a-z]*\\b"
+			"match": "(?<=\\bconst\\s+)[0-9A-Z_a-z]+\\b"
 		},
 		{
 			"name": "variable.cis",
 			"match": "\\b[0-9A-Z_a-z]+\\b"
 		}
-	],
-	"scopeName": "source.cis"
+	]
 }
