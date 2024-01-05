@@ -1,58 +1,25 @@
 // @ts-check
 
-const { l10n, window, workspace } = require("vscode");
-const { LanguageClient, TransportKind } = require("vscode-languageclient/node");
+const { l10n, workspace, window } = require("vscode");
 
-/** @enum { string } */
-const Dialog = {
-	PROMPT: l10n.t("Set the path to your CI-Script installation"),
-	SELECT: l10n.t("Select"),
-	DISABLE: l10n.t("Don't show again")
-}
-
-/** @type { LanguageClient } */
-let client;
+const dialog = {
+	title: l10n.t("Set the path to your CI-Script installation"),
+	action: l10n.t("Enter a new path"),
+	message: l10n.t("Failed to start the language server"),
+	placeHolder: "cis"
+};
 
 exports.activate = async () => {
-	let configuration = workspace.getConfiguration("languageServer");
+	const configuration = workspace.getConfiguration("CI-Script");
 
-	if (!configuration.get("enable")) return;
+	// TODO: Try to start the language server
+	while (configuration.get("location") != "cis") {
+		const answer = await window.showInformationMessage(dialog.message, dialog.action) && await window.showInputBox(dialog);
 
-	if (!configuration.get("location")) {
-		let answer = await window.showInformationMessage(Dialog.PROMPT, Dialog.SELECT, Dialog.DISABLE);
-
-		if (!answer) return;
-
-		if (answer == Dialog.DISABLE) {
-			configuration.update("enable", false, true);
+		if (!answer) {
 			return;
 		}
 
-		answer = (await window.showOpenDialog({
-			title: Dialog.PROMPT,
-			openLabel: Dialog.SELECT,
-			filters: { JavaScript: ["js"] }
-		}))?.[0].fsPath;
-
-		if (!answer) return;
-
 		await configuration.update("location", answer, true);
-
-		configuration = workspace.getConfiguration("languageServer");
 	}
-
-	client = new LanguageClient(
-		"CI-Script",
-		{
-			module: configuration.get("location") || "",
-			transport: TransportKind.ipc
-		},
-		{
-			documentSelector: [{ scheme: "file", language: "ci-script" }],
-			synchronize: { fileEvents: workspace.createFileSystemWatcher("**/*.cis") }
-		}
-	);
-	client.start();
 };
-
-exports.deactivate = async () => client ? await client.stop() : undefined;

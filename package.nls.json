@@ -1,4 +1,3 @@
 {
-	"languageServer.enable": "Enable/Disable the language server.",
-	"languageServer.location": "Set the path to your CI-Script installation."
+	"cis.location": "Set the path to your CI-Script installation."
 }

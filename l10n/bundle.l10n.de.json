@@ -1,5 +1,5 @@
 {
 	"Set the path to your CI-Script installation": "Legen Sie den Pfad zu Ihrer CI-Script-Installation fest",
-	"Select": "Auswählen",
-	"Don't show again": "Nicht erneut anzeigen"
+	"Enter a new path": "Neuen Pfad eingeben",
+	"Failed to start the language server": "Starten des Sprachservers fehlgeschlagen"
 }

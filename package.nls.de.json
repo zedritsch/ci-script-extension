@@ -1,4 +1,3 @@
 {
-	"languageServer.enable": "Aktivieren/Deaktivieren Sie den Sprachserver.",
-	"languageServer.location": "Legen Sie den Pfad zu Ihrer CI-Script-Installation fest."
+	"cis.location": "Legen Sie den Pfad zu Ihrer CI-Script-Installation fest."
 }

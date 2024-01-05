@@ -1,6 +1,6 @@
 {
 	"name": "ci-script-for-vs-code",
-	"displayName": "CI-Script for VS-Code",
+	"displayName": "CI-Script",
 	"description": "CI-Script support for Visual Studio Code",
 	"publisher": "zedritsch",
 	"license": "MIT",
@@ -9,7 +9,9 @@
 		"type": "git",
 		"url": "https://github.com/zedritsch/ci-script-for-vs-code"
 	},
-	"engines": { "vscode": "^1.75.0" },
+	"engines": {
+		"vscode": "^1.75.0"
+	},
 	"categories": [
 		"Programming Languages",
 		"Debuggers",
@@ -24,7 +26,7 @@
 	],
 	"icon": "img/icon.png",
 	"l10n": "l10n",
-	"main": null,
+	"main": "extension",
 	"contributes": {
 		"languages": [
 			{
@@ -38,8 +40,13 @@
 					"ci-script",
 					"cis"
 				],
-				"extensions": [ ".cis" ],
+				"extensions": [
+					".cis"
+				],
 				"configuration": "language-configuration.json"
+			},
+			{
+				"id": "markdown-cobol-injection"
 			}
 		],
 		"grammars": [
@@ -47,26 +54,29 @@
 				"language": "cis",
 				"scopeName": "source.cis",
 				"path": "syntax/cis.tmLanguage.json"
+			},
+			{
+				"scopeName": "source.md",
+				"path": "syntax/md.tmLanguage.json",
+				"injectTo": [
+					"text.html.markdown"
+				]
 			}
 		],
 		"configuration": {
-			"title": "CI-Script",
 			"properties": {
-				"languageServer.enable": {
-					"description": "%languageServer.enable%",
-					"type": "boolean",
-					"default": true,
-					"scope": "resource"
-				},
-				"languageServer.location": {
-					"description": "%languageServer.location%",
+				"CI-Script.location": {
+					"description": "%cis.location%",
 					"type": "string",
+					"default": "cis",
 					"scope": "resource"
 				}
 			}
 		},
 		"configurationDefaults": {
-			"[cis]": { "editor.insertSpaces": false }
+			"[cis]": {
+				"editor.insertSpaces": false
+			}
 		}
 	}
 }
