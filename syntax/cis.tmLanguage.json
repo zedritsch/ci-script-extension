@@ -27,11 +27,11 @@
 		},
 		{
 			"name": "keyword.cis",
-			"match": "\\b(a(sync|uto)|const|enum|f(alse|unc)|in|mut|null|struct|t(his|rue)|v(ar|oid))\\b"
+			"match": "\\b(a(sync|uto)|const|enum|func|import|mut|struct|v(ar|oid))\\b"
 		},
 		{
 			"name": "keyword.control.cis",
-			"match": "\\b(await|break|export|for|i(f|mport)|not|return|skip|while)\\b"
+			"match": "\\b(await|break|export|for|i[fn]|not|return|skip|while)\\b"
 		},
 		{
 			"name": "keyword.operator.cis",
@@ -82,12 +82,24 @@
 			]
 		},
 		{
-			"name": "support.type.cis",
+			"name": "storage.type.primitive.cis",
 			"match": "\\b(bool|char|f(128|32|64)|[iu](1(28|6)|32|64|8)|str)\\b"
 		},
 		{
+			"name": "constant.language.cis",
+			"match": "\\b(false|null|true)\\b"
+		},
+		{
 			"name": "entity.name.type.cis",
-			"match": "(?<=:\\s*|\\b(enum|struct)\\s+)[0-9A-Z_a-z]+\\b|\\b[0-9_]*[A-Z][0-9A-Z_a-z]*(?=\\s*[(.])"
+			"match": "(?<=:\\s*)[0-9A-Z_a-z]+\\b"
+		},
+		{
+			"name": "entity.name.type.enum.cis",
+			"match": "(?<=\\benum\\s+)[0-9A-Z_a-z]+\\b"
+		},
+		{
+			"name": "entity.name.type.struct.cis",
+			"match": "(?<=\\bstruct\\s+)[0-9A-Z_a-z]+\\b"
 		},
 		{
 			"name": "entity.name.function.cis",
@@ -95,11 +107,19 @@
 		},
 		{
 			"name": "variable.parameter.cis",
-			"match": "(?<=\\b(func\\s.*|for\\s+))[0-9A-Z_a-z]+"
+			"match": "(?<=\\bfunc\\s.*)[0-9A-Z_a-z]+"
+		},
+		{
+			"name": "variable.other.enummember.cis",
+			"match": "(?<=\\(enum\\s[0-9A-Z_a-z]+\\)\\s)[0-9A-Z_a-z]+\\b"
 		},
 		{
 			"name": "variable.other.constant.cis",
-			"match": "(?<=\\bconst\\s+)[0-9A-Z_a-z]+\\b|(?<!\\bvar\\s+)\\b[0-9_]*[A-Z][0-9A-Z_a-z]*\\b"
+			"match": "(?<=\\bconst\\s+)[0-9A-Z_a-z]+\\b"
+		},
+		{
+			"name": "variable.other.property.cis",
+			"match": "(?<=\\(struct\\s[0-9A-Z_a-z]+\\)\\s)[0-9A-Z_a-z]+\\b"
 		},
 		{
 			"name": "variable.cis",

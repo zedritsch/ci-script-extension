@@ -44,9 +44,6 @@
 					".cis"
 				],
 				"configuration": "language-configuration.json"
-			},
-			{
-				"id": "markdown-cobol-injection"
 			}
 		],
 		"grammars": [
