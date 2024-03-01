@@ -3,8 +3,8 @@
 	"patterns": [
 		{
 			"name": "comment.cis",
-			"begin": "/\\*",
-			"end": "\\*/",
+			"begin": "###",
+			"end": "###",
 			"patterns": [
 				{
 					"match": "\\\\`"
@@ -27,19 +27,23 @@
 		},
 		{
 			"name": "keyword.cis",
-			"match": "\\b(a(sync|uto)|const|enum|func|import|mut|struct|v(ar|oid))\\b"
+			"match": "\\b(?:a(?:sync|uto)|const|enum|f(?:alse|unc)|import|mut|null|struct|t(?:his|rue)|v(?:ar|oid))\\b"
 		},
 		{
 			"name": "keyword.control.cis",
-			"match": "\\b(await|break|export|for|i[fn]|not|return|skip|while)\\b"
+			"match": "\\b(?:await|break|export|for|i[fn]|not|return|skip|while)\\b"
 		},
 		{
 			"name": "keyword.operator.cis",
-			"match": "!=?|&&?|\\+\\+?|--?|\\.[.=]|<[<=~]?|==?|>[=>]?|\\|\\|?|~[>~]?|[$%*/?@^]"
+			"match": "!=?|&&?|\\+\\+?|--?|\\.[.=]|<[<=~]?|[=>][=>]?|\\|\\|?|~>?|[$%*/?@^]"
+		},
+		{
+			"name": "punctuation.cis",
+			"match": "[(),.:;\\[\\]{}]"
 		},
 		{
 			"name": "constant.numeric.cis",
-			"match": "\\b(0(x([0-9A-Fa-f]+_)*[0-9A-Fa-f]+|o([0-7]+_)*[0-7]+|b([01]+_)*[01]+)?|\\d+[\\d_]*(\\.\\d+)?)\\b"
+			"match": "\\b(?:(?:\\d+_?)+(?:\\.\\d+)?|0(?:x(?:[0-9A-Fa-f]+_?)*|o(?:[0-7]+_?)*|b(?:[01]+_?)*))\\b"
 		},
 		{
 			"name": "string.cis",
@@ -48,7 +52,7 @@
 			"patterns": [
 				{
 					"name": "constant.character.escape.cis",
-					"match": "\\\\(['0abefnrtv\\\\]|x[0-7]?[0-9A-Fa-f])"
+					"match": "\\\\(['0abefnrtv\\\\]|x[0-7][0-9A-Fa-f])"
 				},
 				{
 					"name": "invalid.cis",
@@ -63,7 +67,7 @@
 			"patterns": [
 				{
 					"name": "constant.character.escape.cis",
-					"match": "\\\\([\"0abefnrtv\\\\{]|x[0-7]?[0-9A-Fa-f]|u[0-9A-Fa-f]{1,4}|U[0-9A-Fa-f]{1,8})"
+					"match": "\\\\([\"0abefnrtv\\\\{]|x[0-7][0-9A-Fa-f]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})"
 				},
 				{
 					"name": "invalid.cis",
@@ -83,15 +87,11 @@
 		},
 		{
 			"name": "storage.type.primitive.cis",
-			"match": "\\b(bool|char|f(128|32|64)|[iu](1(28|6)|32|64|8)|str)\\b"
-		},
-		{
-			"name": "constant.language.cis",
-			"match": "\\b(false|null|true)\\b"
+			"match": "\\b(?:bool|char|f(?:128|32|64)|[iu](?:1(?:28|6)|32|64|8)|str)\\b"
 		},
 		{
 			"name": "entity.name.type.cis",
-			"match": "(?<=:\\s*)[0-9A-Z_a-z]+\\b"
+			"match": "(?<=:\\s*)[0-9A-Z_a-z]+\\b|\\b([0-9A-Z_a-z]+)(?=\\(.*\\):\\s\\1\\b)"
 		},
 		{
 			"name": "entity.name.type.enum.cis",
@@ -110,10 +110,6 @@
 			"match": "(?<=\\bfunc\\s.*)[0-9A-Z_a-z]+"
 		},
 		{
-			"name": "variable.other.enummember.cis",
-			"match": "(?<=\\(enum\\s[0-9A-Z_a-z]+\\)\\s)[0-9A-Z_a-z]+\\b"
-		},
-		{
 			"name": "variable.other.constant.cis",
 			"match": "(?<=\\bconst\\s+)[0-9A-Z_a-z]+\\b"
 		},
@@ -122,8 +118,16 @@
 			"match": "(?<=\\(struct\\s[0-9A-Z_a-z]+\\)\\s)[0-9A-Z_a-z]+\\b"
 		},
 		{
+			"name": "variable.other.enummember.cis",
+			"match": "(?<=\\(enum\\s[0-9A-Z_a-z]+\\)\\s)[0-9A-Z_a-z]+\\b|(?<!\\bvar\\s+)\\b[0-9_]*[A-Z][0-9A-Z_]*\\b"
+		},
+		{
 			"name": "variable.cis",
 			"match": "\\b[0-9A-Z_a-z]+\\b"
+		},
+		{
+			"name": "invalid.cis",
+			"match": "\\S+"
 		}
 	]
 }

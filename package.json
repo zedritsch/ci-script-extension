@@ -1,21 +1,21 @@
 {
-	"name": "ci-script-for-vs-code",
+	"name": "ci-script-extension",
 	"displayName": "CI-Script",
-	"description": "CI-Script support for Visual Studio Code",
+	"description": "CI-Script support for TextMate based editors",
 	"publisher": "zedritsch",
 	"license": "MIT",
 	"version": "1.0.0",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/zedritsch/ci-script-for-vs-code"
+		"url": "https://github.com/zedritsch/ci-script-extension"
 	},
 	"engines": {
 		"vscode": "^1.75.0"
 	},
 	"categories": [
 		"Programming Languages",
-		"Debuggers",
 		"Formatters",
+		"Debuggers",
 		"Linters",
 		"Other"
 	],
@@ -27,6 +27,7 @@
 	"icon": "img/icon.png",
 	"l10n": "l10n",
 	"main": "extension",
+	"activationEvents": [],
 	"contributes": {
 		"languages": [
 			{
