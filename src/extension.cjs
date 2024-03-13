@@ -1,0 +1,1 @@
+exports.activate=async()=>(exports=await import("./main.js")).activate()

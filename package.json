@@ -26,7 +26,8 @@
 	],
 	"icon": "img/icon.png",
 	"l10n": "l10n",
-	"main": "extension",
+	"main": "src/extension.cjs",
+	"type": "module",
 	"activationEvents": [],
 	"contributes": {
 		"languages": [
@@ -76,5 +77,8 @@
 				"editor.insertSpaces": false
 			}
 		}
+	},
+	"dependencies": {
+		"vscode-languageclient": "^9.0.1"
 	}
 }

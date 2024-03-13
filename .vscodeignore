@@ -1,8 +1,10 @@
 # Directories
 .vscode
-
-# Files
-.gitignore
+node_modules
 
 # Filetypes
 *.vsix
+
+# Files
+.gitignore
+package-lock.json

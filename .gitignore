@@ -1,9 +1,11 @@
 # Directories
 .vscode/*
+node_modules
+
+# Filetypes
+*.vsix
 
 # Files
 !.vscode/launch.json
 !.vscode/tasks.json
-
-# Filetypes
-*.vsix
+package-lock.json
