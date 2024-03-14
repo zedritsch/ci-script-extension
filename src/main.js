@@ -1,6 +1,6 @@
 // @ts-check
 
-import { LanguageClient, TransportKind, ProtocolRequestType0 } from "vscode-languageclient/node.js";
+import { LanguageClient, TransportKind } from "vscode-languageclient/node.js";
 
 /** @type {typeof import("vscode")} */
 const vscode = (await import("node:module")).default.createRequire(import.meta.url)("vscode");
@@ -53,11 +53,6 @@ const quick_pick_items = [
 	}
 ];
 
-const selector = {
-	scheme: "file",
-	language: "ci-script"
-};
-
 /** @type {WorkspaceConfiguration} */
 let configuration;
 
@@ -96,14 +91,19 @@ export async function activate() {
 			transport: TransportKind.ipc
 		},
 		{
-			documentSelector: [selector],
+			documentSelector: [
+				{
+					scheme: "file",
+					language: "cis"
+				}
+			],
 			synchronize: {
 				fileEvents: vscode.workspace.createFileSystemWatcher("**/*.cis")
 			}
 		}
 	);
 	
-	await client.start();
+	client.start();
 }
 
 /** @this QuickPick<QuickPickItem> */
