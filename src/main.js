@@ -18,16 +18,25 @@ const vscode = (await import("node:module")).default.createRequire(import.meta.u
 /** @enum {string} */
 const Translation = {
 	/** @readonly */
-	PROMPT: vscode.l10n.bundle?.prompt ?? "Set the path to your CI-Script installation",
-	
+	MESSAGE: vscode.l10n.bundle?.message ?? "Failed to start the language server",
+
 	/** @readonly */
-	SELECT: vscode.l10n.bundle?.select ?? "Select",
+	ACTION: vscode.l10n.bundle?.action ?? "Enter a new path",
+
+	/** @readonly */
+	PLACEHOLDER: vscode.l10n.bundle?.placeholder ?? "Enter a file path or a command",
 	
 	/** @readonly */
 	FILE: vscode.l10n.bundle?.file ?? "Set entered path",
 	
 	/** @readonly */
 	FOLDER: vscode.l10n.bundle?.folder ?? "Select in file explorer",
+
+	/** @readonly */
+	TITLE: vscode.l10n.bundle?.title ?? "Set the path to your CI-Script installation",
+	
+	/** @readonly */
+	SELECT: vscode.l10n.bundle?.select ?? "Select",
 	
 	/** @readonly */
 	DEFAULT: vscode.l10n.bundle?.default ?? "Default"
@@ -65,15 +74,16 @@ export async function activate() {
 	/** @type {string} */
 	const location = configuration.get("location") ?? "";
 
+	// TODO: Check if path is valid (cis => CI-Script v1.0.0)
 	if (!location) {
-		if (!await vscode.window.showInformationMessage(Translation.PROMPT, Translation.SELECT)) {
+		if (!await vscode.window.showInformationMessage(Translation.MESSAGE, Translation.ACTION)) {
 			return;
 		}
 
 		const quick_pick = vscode.window.createQuickPick();
 
 		quick_pick.ignoreFocusOut = true;
-		quick_pick.placeholder = Translation.PROMPT;
+		quick_pick.placeholder = Translation.PLACEHOLDER;
 		quick_pick.value = location == "cis" ? "" : location;
 		quick_pick.items = quick_pick_items;
 
@@ -87,8 +97,14 @@ export async function activate() {
 	client = new LanguageClient(
 		"CI-Script",
 		{
-			module: configuration.get("location") ?? "",
-			transport: TransportKind.ipc
+			command: configuration.get("location") ?? "",
+			transport: {
+				kind: TransportKind.socket,
+				port: 4000
+			},
+			options: {
+				shell: true
+			}
 		},
 		{
 			documentSelector: [
@@ -118,7 +134,7 @@ async function onQuickPickHide() {
 
 	if (this.selectedItems[0].label == Translation.FOLDER) {
 		this.value = (await vscode.window.showOpenDialog({
-			title: Translation.PROMPT,
+			title: Translation.TITLE,
 			openLabel: Translation.SELECT
 		}))?.[0].fsPath ?? "";
 

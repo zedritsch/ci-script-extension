@@ -1,7 +1,10 @@
 {
-	"prompt": "Legen Sie den Pfad zu Ihrer CI-Script-Installation fest",
-	"select": "Auswählen",
+	"message": "Starten des Sprachservers fehlgeschlagen",
+	"action": "Neuen Pfad eingeben",
+	"placeholder": "Geben Sie einen Pfad oder einen Startbefehl ein",
 	"file": "Eingegebenen Pfad festlegen",
 	"folder": "Im Datei-Explorer auswählen",
+	"title": "Legen Sie den Pfad zu Ihrer CI-Script-Installation fest",
+	"select": "Auswählen",
 	"default": "Standard"
 }
